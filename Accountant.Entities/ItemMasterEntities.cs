@@ -8,7 +8,6 @@ namespace Accountant.Entities
 {
     public class ItemMasterEntities
     {
-
         public int ID { get; set; }
         public string ItemName { get; set; }
 
