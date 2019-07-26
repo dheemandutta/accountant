@@ -4,13 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Accountant.BL;
-//using CableMan.Models;
+//using Accountant.Models;
 using Accountant.Entities;
 using System.Globalization;
 using System.Web.Script.Serialization;
 using System.IO;
 using System.Web.Security;
-//using CableMan.Common;
+//using Accountant.Common;
 
 namespace Accountant.UI
 {
@@ -20,7 +20,7 @@ namespace Accountant.UI
         
         public ActionResult Index()
         {
-            ViewData["SubTitle"] = "CableMan 24x7";
+            ViewData["SubTitle"] = "Accountant";
             ViewData["Message"] = "";
 
            

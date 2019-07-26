@@ -14,7 +14,7 @@ namespace Accountant.DAL
     {
         public int SaveItemMaster(ItemMasterEntities itemMaster)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CableManDBConnectionString"].ConnectionString);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("stpSaveItemMaster", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -41,7 +41,7 @@ namespace Accountant.DAL
         {
             List<ItemMasterEntities> itemMasterList = new List<ItemMasterEntities>();
 
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CableManDBConnectionString"].ConnectionString))
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("stpGetItemMasterPageWise", con))
                 {
@@ -78,7 +78,7 @@ namespace Accountant.DAL
         {
             List<ItemMasterEntities> prodList = new List<ItemMasterEntities>();
             DataSet ds = new DataSet();
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CableManDBConnectionString"].ConnectionString))
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("stpGetItemMasterByID", con))
                 {
@@ -123,7 +123,7 @@ namespace Accountant.DAL
 
         public int DeleteItemMaster(int ID)
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CableManDBConnectionString"].ConnectionString);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("stpDeleteItemMaster", con);
             cmd.CommandType = CommandType.StoredProcedure;

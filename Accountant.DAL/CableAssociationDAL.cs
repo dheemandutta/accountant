@@ -16,7 +16,7 @@ namespace Accountant.DAL
         //for UnitMaster drp
         public List<ItemMasterEntities> GetAllUnitMasterForDrp()
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["CableManDBConnectionString"].ConnectionString);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("usp_GetAllUnitMasterForDrp", con);
             cmd.CommandType = CommandType.StoredProcedure;
