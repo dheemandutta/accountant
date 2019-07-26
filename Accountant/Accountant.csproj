@@ -169,6 +169,7 @@
     <Compile Include="App_Start\TraceFilterAttribute.cs" />
     <Compile Include="Common\SMSSender.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AddNewCompanyController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HtmlHelpers.cs" />
@@ -700,6 +701,7 @@
     <Content Include="Views\Shared\_TopNavbar.cshtml" />
     <Content Include="Views\Shared\_LayoutEmpty.cshtml" />
     <Content Include="Views\ItemMaster\Index.cshtml" />
+    <Content Include="Views\AddNewCompany\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
