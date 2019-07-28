@@ -43,9 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountMasterDAL.cs" />
     <Compile Include="CableAssociationDAL.cs" />
+    <Compile Include="CompanyMasterDAL.cs" />
     <Compile Include="ItemMasterDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transactions\TranCompanyMaster.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Accountant.Base\Accountant.Base.csproj">
