@@ -42,9 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CableAssociationBL.cs" />
+    <Compile Include="AccountBL.cs" />
     <Compile Include="CompanyMasterBL.cs" />
-    <Compile Include="ItemMasterBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

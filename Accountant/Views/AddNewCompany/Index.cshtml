@@ -1,4 +1,5 @@
 ﻿@*@model CableMan.Entities.ConsumerChannelEntities*@
+@model Accountant.Entities.CompanyMasterEntities
 @{
     ViewBag.Title = "Alacarte";
 }
@@ -8,6 +9,7 @@
 <link href="dist/dual-listbox.css" rel="stylesheet">
 <link href="~/Content/plugins/dualListbox/bootstrap-duallistbox.min.css" rel="stylesheet" />
 <script src="~/Scripts/ConsumerChannel.js"></script>
+<script src="~/Scripts/CompanyMasterScript.js"></script>
 <link href="~/link/css/rank.css" rel="stylesheet" />
 
 <link href="~/Content/typeahead.css" rel="stylesheet" />
@@ -16,7 +18,8 @@
     background-size: cover;">
 
     @*@Html.Hidden("GetAlaCarte", @Url.Action("GetAlaCarteChannelByID", "ConsumerChannel"))
-    @Html.Hidden("AlaCarteChanneladd", @Url.Action("AddAlaCarteChanels", "ConsumerChannel"))*@
+    @Html.Hidden("AlaCarteChanneladd", @Url.Action("AddAlaCarteChanels", "ConsumerChannel"))*@H
+    @Html.Hidden("savecompanymaster",Url.Action("SaveCompanyMaster","company"))
 
     <div class="row" style="height:1700px;">
         <div class="col-md-7 bac" style=" width: 100%;">
@@ -47,9 +50,9 @@
                                             <div class="col-sm-10" style="width: 30%;"><input type="text" class="form-control" style="width: 90%;" id="txtCompanyName" placeholder="Company Name"></div>
                                         </div>
                                         <div class="form-group" style="margin-right: -600px;">
-                                            <label class="col-sm-2 control-label">txtAddress:<font color=""></font> </label>
+                                            <label class="col-sm-2 control-label">Address:<font color=""></font> </label>
                                             <div class="col-sm-10" style="width: 30%;">
-                                                <textarea type="text" class="form-control valid" id="Address" placeholder="Address" style="width: 90% !important;"></textarea>
+                                                <textarea type="text" class="form-control valid" id="txtAddress" placeholder="Address" style="width: 90% !important;"></textarea>
                                             </div>
                                         </div>
 
@@ -78,6 +81,8 @@
                                         <div class="form-group" style="margin-right: -600px;">
                                             <label class="col-sm-2 control-label">Parent Company:<font color=""></font> </label>
                                             <div class="col-sm-10" style="width: 30%;">
+                                                @*<div class="col-sm-10" style="width: 30%;">@Html.DropDownListFor(model => model.itemGroupID, (IEnumerable<SelectListItem>)ViewBag.itemGroupNameforDrp, "Select", new { @class = "form-control", @id = "drplItemGroup" })</div>*@
+                                                <div class="col-sm-10" style="width: 30%;">@Html.DropDownListFor(model => model.ParentCompanyID,(IEnumerable<SelectListItem>)ViewBag.masterCompanyallforDrwopdwon,"Select",new { @class="form-control",@id="drpCompanyMaster"}) </div>
                                                 <select name="company" id="drpCompany" class="form-control" style="width: 90%;">
                                                     <option value="2017">2017</option>
                                                     <option value="2018">2018</option>
@@ -86,7 +91,11 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-primary" id="btnSave" onclick="return">Save</button>
+
+                                        <div class="form-group">
+                                            <input type="hidden" id="#CompanyId" />
+                                        </div>
+                                        <button type="button" class="btn btn-primary" id="btnSave" onclick="return Add();">Save</button>
                                         <button type="button" class="btn btn-primary" id="btnUpdate" onclick="return">Update</button>
                                         <button type="button" class="btn btn-primary" id="btnClear" onclick="return">Clear</button>
                                     </form>

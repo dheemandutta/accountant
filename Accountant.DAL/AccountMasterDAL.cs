@@ -155,7 +155,7 @@ namespace Accountant.DAL
 
         }
 
-        public int SaveAccount(AccountMasterEntities account)
+        public int SaveAccountMaster(AccountMasterEntities account)
         {
             SqlConnection  con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnectionString"].ConnectionString);
             con.Open();

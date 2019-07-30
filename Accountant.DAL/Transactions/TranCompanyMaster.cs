@@ -40,8 +40,8 @@ namespace Accountant.DAL.Transactions
                     accountMasterDal.SaveAccountMaster(accountMasterOne,con,tran);
 
                     AccountMasterEntities accountMasterTwo = new AccountMasterEntities();
-                    accountMasterTwo.AccountName = "Sales Tax";
-                    accountMasterTwo.GroupId = 3;
+                    accountMasterTwo.AccountName = "Sales";
+                    accountMasterTwo.GroupId = 6;
                     accountMasterTwo.AccountCode = string.Empty;
                     accountMasterTwo.YearId = company.YearId;
                     accountMasterTwo.isActive = 1;
@@ -52,8 +52,8 @@ namespace Accountant.DAL.Transactions
                     accountMasterDal.SaveAccountMaster(accountMasterTwo, con, tran);
 
                     AccountMasterEntities accountMasterThree = new AccountMasterEntities();
-                    accountMasterThree.AccountName = "Sales Tax";
-                    accountMasterThree.GroupId = 3;
+                    accountMasterThree.AccountName = "Purchase";
+                    accountMasterThree.GroupId = 7;
                     accountMasterThree.AccountCode = string.Empty;
                     accountMasterThree.YearId = company.YearId;
                     accountMasterThree.isActive = 1;
@@ -89,8 +89,8 @@ namespace Accountant.DAL.Transactions
                     accountMasterDal.SaveAccountMaster(accountMasterOne, con, tran);
 
                     AccountMasterEntities accountMasterTwo = new AccountMasterEntities();
-                    accountMasterTwo.AccountName = "Sales Tax";
-                    accountMasterTwo.GroupId = 3;
+                    accountMasterTwo.AccountName = "Sales";
+                    accountMasterTwo.GroupId = 6;
                     accountMasterTwo.AccountCode = string.Empty;
                     accountMasterTwo.YearId = company.YearId;
                     accountMasterTwo.isActive = 1;
@@ -101,8 +101,8 @@ namespace Accountant.DAL.Transactions
                     accountMasterDal.SaveAccountMaster(accountMasterTwo, con, tran);
 
                     AccountMasterEntities accountMasterThree = new AccountMasterEntities();
-                    accountMasterThree.AccountName = "Sales Tax";
-                    accountMasterThree.GroupId = 3;
+                    accountMasterThree.AccountName = "Purchase";
+                    accountMasterThree.GroupId = 7;
                     accountMasterThree.AccountCode = string.Empty;
                     accountMasterThree.YearId = company.YearId;
                     accountMasterThree.isActive = 1;
