@@ -72,138 +72,6 @@ namespace Accountant.DAL
             return companyID;
         }
 
-        //public DataSet GetAllCompanies()
-        //{
-        //    string constring = ConfigurationManager.ConnectionStrings["MyDBConnectionString"].ConnectionString;
-        //    SqlConnection con = new SqlConnection(constring);
-        //    con.Open();
-        //    SqlCommand cmd = new SqlCommand("usp_SelectCompanyMastersAll", con);
-        //    cmd.CommandType = CommandType.StoredProcedure;
-
-        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
-        //    DataSet ds = new DataSet();
-        //    da.Fill(ds);
-        //    con.Close();
-
-        //    return ds;
-        //}
-
-        public List<CompanyMasterEntities> GetAllCompnay()
-        {
-            List<CompanyMasterEntities> companyList = new List<CompanyMasterEntities>();
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString);
-            con.Open();
-            SqlCommand cmd = new SqlCommand("usp_GetAllUnitPageWise", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-
-            foreach (DataRow dr in ds.Tables[0].Rows)
-            {
-                companyList.Add(new CompanyMasterEntities
-                {
-                    CompanyId= Convert.ToInt32(dr["CompanyId"]),
-                    CompanyName = Convert.ToString(dr["CompanyName"]),
-                    YearId=Convert.ToInt32(dr["YearId"]),
-                    CompanyCode=Convert.ToString(dr["CompanyCode"]),
-                });
-            }
-            con.Close();
-            return companyList;
-        }
-        public DataSet GetAllMasterCompanies(int yearId)
-        {
-            string constring = ConfigurationManager.ConnectionStrings["MyDBConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(constring);
-            con.Open();
-            SqlCommand cmd = new SqlCommand("usp_GetAllMasterCompanies", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@YearId", yearId);
-
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            con.Close();
-
-            return ds;
-        }
-
-        public DataSet GetCompanyById(int companyId)
-        {
-            string constring = ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(constring);
-            con.Open();
-            SqlCommand cmd = new SqlCommand("usp_SelectCompanyMaster", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@CompanyId", companyId);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            con.Close();
-            return ds;
-        }
-
-        public DataSet GetCompanyByYearId(int yearId)
-        {
-            string constring = ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(constring);
-            con.Open();
-            SqlCommand cmd = new SqlCommand("usp_SelectCompanyMastersByAndYearId", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@YearId", yearId);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            con.Close();
-            return ds;
-        }
-
-        public DataSet GetBranchCompanyByYearId(int yearId)
-        {
-            string constring = ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(constring);
-            con.Open();
-            SqlCommand cmd = new SqlCommand("usp_SelectMasterCompanyByAndYearId", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@YearId", yearId);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            con.Close();
-            return ds;
-        }
-
-        public DataSet GetCompanyAndYear()
-        {
-            string constring = ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(constring);
-            con.Open();
-            SqlCommand cmd = new SqlCommand("usp_SelectCompanyAndYear", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            //cmd.Parameters.AddWithValue("@YearId", yearId);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            con.Close();
-            return ds;
-        }
-
-        public DataSet GetParentCompany(int companyId, int yearId)
-        {
-            string constring = ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(constring);
-            con.Open();
-            SqlCommand cmd = new SqlCommand("usp_GetParentCompnay", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@CompanyId", companyId);
-            cmd.Parameters.AddWithValue("@YearId", yearId);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            con.Close();
-            return ds;
-        }
         public int UpdateCompany(CompanyMasterEntities company)
         {
             string constr = ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString;
@@ -221,5 +89,170 @@ namespace Accountant.DAL
             myConn.Close();
             return recordsAffected;
         }
+        public List<CompanyMasterEntities> GetAllCompnay()
+        {
+            List<CompanyMasterEntities> companyList = new List<CompanyMasterEntities>();
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("usp_SelectCompanyMastersAll", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                companyList.Add(new CompanyMasterEntities
+                {
+                    CompanyId= Convert.ToInt32(dr["CompanyId"].ToString()),
+                    CompanyName = Convert.ToString(dr["CompanyName"]),
+                    YearId=Convert.ToInt32(dr["YearId"].ToString()),
+                  //  YearDescription = Convert.ToString(dr["YearDescription"]),
+                    CompanyCode=Convert.ToString(dr["CompanyCode"]),
+                });
+            }
+            con.Close();
+            return companyList;
+        }
+
+        public List<CompanyMasterEntities> GetAllMasterCompanies(int yearId)
+        {
+            List<CompanyMasterEntities> listMasterCompnay = new List<CompanyMasterEntities>();
+            CompanyMasterEntities company = new CompanyMasterEntities();
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("usp_GetAllMasterCompanies", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@YearId", yearId);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                listMasterCompnay.Add(new CompanyMasterEntities
+                {
+                    CompanyId = Convert.ToInt32(dr["CompanyId"].ToString()),
+                    CompanyName = Convert.ToString(dr["CompanyName"]),
+                    CompanyCode = Convert.ToString(dr["CompanyCode"]),
+                });
+            }
+            con.Close();
+            return listMasterCompnay;
+        }
+
+        public CompanyMasterEntities GetCompanyById(int companyId)
+        {
+            string constring = ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(constring);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("usp_SelectCompanyMaster", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@CompanyId", companyId);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            CompanyMasterEntities company = new CompanyMasterEntities();
+            con.Close();
+            company.CompanyId = Convert.ToInt32(ds.Tables[0].Rows[0]["CompnayId"].ToString());
+            company.CompanyName = ds.Tables[0].Rows[0]["CompanyName"].ToString();
+            return company;
+
+        }
+
+        public List<CompanyMasterEntities> GetCompanyByYearId(int yearId)
+        {
+            List<CompanyMasterEntities> CompanyList = new List<CompanyMasterEntities>();
+            string constring = ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(constring);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("usp_SelectCompanyMastersByAndYearId", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@YearId", yearId);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            foreach(DataRow dr in ds.Tables[0].Rows)
+            {
+                CompanyList.Add(new CompanyMasterEntities
+                {
+                    CompanyId = Convert.ToInt32(dr["CompanyId"].ToString()),
+                    CompanyName = Convert.ToString(dr["CompanyName"]),
+                    YearId = Convert.ToInt32(dr["YearId"].ToString()),
+                    CompanyCode = Convert.ToString(dr["CompanyCode"]),
+                    isMaster = Convert.ToBoolean(dr["isMaster"].ToString()),
+                });
+            }
+            con.Close();
+            return CompanyList;
+        }
+
+        public List<CompanyMasterEntities> GetBranchCompanyByYearId(int yearId)
+        {
+            List<CompanyMasterEntities> CompanyList = new List<CompanyMasterEntities>();
+            string constring = ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(constring);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("usp_SelectMasterCompanyByAndYearId", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@YearId", yearId);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                CompanyList.Add(new CompanyMasterEntities
+                {
+                    CompanyId = Convert.ToInt32(dr["CompanyId"].ToString()),
+                    CompanyName = Convert.ToString(dr["CompanyName"]),
+                    YearId = Convert.ToInt32(dr["YearId"].ToString()),
+                    CompanyCode = Convert.ToString(dr["CompanyCode"]),
+                    isMaster = Convert.ToBoolean(dr["isMaster"].ToString()),
+                });
+            }
+            con.Close();
+            return CompanyList;
+        }
+       
+        public List<CompanyMasterEntities> GetParentCompany(int companyId, int yearId)
+        {
+            string constring = ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(constring);
+            con.Open();
+            List<CompanyMasterEntities> companyList = new List<CompanyMasterEntities>();
+            SqlCommand cmd = new SqlCommand("usp_GetParentCompnay", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@CompanyId", companyId);
+            cmd.Parameters.AddWithValue("@YearId", yearId);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                companyList.Add(new CompanyMasterEntities
+                {
+                    CompanyId = Convert.ToInt32(dr["CompanyId"].ToString()),
+                });
+            }
+            con.Close();
+            return companyList;
+        }
+
+        /*Dheeman da nicher method ta multiple table a ache, viewmodel nite hbe ki?*/
+        public DataSet GetCompanyAndYear()
+        {
+            string constring = ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(constring);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("usp_SelectCompanyAndYear", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.Parameters.AddWithValue("@YearId", yearId);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            con.Close();
+            return ds;
+        }
+        /*Dheeman da oporer method ta multiple table a ache, viewmodel nite hbe ki?*/
+       
     }
 }

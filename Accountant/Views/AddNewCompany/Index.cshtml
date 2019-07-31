@@ -18,8 +18,10 @@
     background-size: cover;">
 
     @*@Html.Hidden("GetAlaCarte", @Url.Action("GetAlaCarteChannelByID", "ConsumerChannel"))
-    @Html.Hidden("AlaCarteChanneladd", @Url.Action("AddAlaCarteChanels", "ConsumerChannel"))*@H
+    @Html.Hidden("AlaCarteChanneladd", @Url.Action("AddAlaCarteChanels", "ConsumerChannel"))*@
     @Html.Hidden("savecompanymaster",Url.Action("SaveCompanyMaster","company"))
+    @Html.Hidden("LoadAllCompany",Url.Action("LoadAllCompanyData","company"))
+    @Html.Hidden("getcompanybyid",Url.Action("","company"))
 
     <div class="row" style="height:1700px;">
         <div class="col-md-7 bac" style=" width: 100%;">
@@ -120,7 +122,7 @@
                                     <h2>
                                         Company List
                                     </h2>
-                                    <table id="certtable" class="display" cellspacing="0" style="width: 93.667%;">
+                                    <table id="compnayTable" class="display" cellspacing="0" style="width: 93.667%;">
                                         <thead>
                                             <tr>
                                                 <th>Company</th>

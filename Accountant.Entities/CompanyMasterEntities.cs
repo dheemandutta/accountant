@@ -17,5 +17,7 @@ namespace Accountant.Entities
         public bool isCopied { get; set; }
 
         public int ? ParentCompanyID { get; set; }
+
+        public YearMasterEntities YearDescription { get; set; }
     }
 }

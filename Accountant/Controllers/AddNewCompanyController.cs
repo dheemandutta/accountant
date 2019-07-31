@@ -43,13 +43,16 @@ namespace CableMan.UI.Controllers
                     });
         }
 
-        //public void GetAllYearList()
-        //{
-        //    List<YearMasterEntities> yearlist = new List<YearMasterEntities>();
-        //    yearma
-        //}
+        public void GetAllYearList()
+        {
+            
+        }
 
-        public JsonResult LoadData()
+        public void GetCompanyId(int CompanyId)
+        {
+
+        }
+        public JsonResult LoadAllCompanyData()
         {
          
             CompanyMasterBL companyBl = new CompanyMasterBL();

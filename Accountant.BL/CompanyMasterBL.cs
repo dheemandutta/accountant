@@ -40,64 +40,60 @@ namespace Accountant.BL
             return companyDl.GetAllCompnay();
         }
 
-        public DataSet GetCompanyById(int companyId)
+        public CompanyMasterEntities GetCompanyById(int companyId)
         {
-            DataSet dsCompany = new DataSet();
+          
             CompanyMasterDAL companyDAL = new CompanyMasterDAL();
             try
             {
-                dsCompany = companyDAL.GetCompanyById(companyId);
+                return companyDAL.GetCompanyById(companyId);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return dsCompany;
         }
 
-        public DataSet GetAllMasterCompanies(int yearId)
+        public List<CompanyMasterEntities> GetAllMasterCompanies(int yearId)
         {
             DataSet dsCompany = new DataSet();
             CompanyMasterDAL companyDAL = new CompanyMasterDAL();
             try
             {
-                dsCompany = companyDAL.GetAllMasterCompanies(yearId);
+                return companyDAL.GetAllMasterCompanies(yearId);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return dsCompany;
         }
 
-        public DataSet GetCompanyByYearId(int yearId)
+        public List<CompanyMasterEntities> GetCompanyByYearId(int yearId)
         {
-            DataSet dsCompany = new DataSet();
+            
             CompanyMasterDAL companyDAL = new CompanyMasterDAL();
             try
             {
-                dsCompany = companyDAL.GetCompanyByYearId(yearId);
+                return companyDAL.GetCompanyByYearId(yearId);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return dsCompany;
         }
 
-        public DataSet GetBranchCompanyByYearId(int yearId)
+        public List<CompanyMasterEntities> GetBranchCompanyByYearId(int yearId)
         {
             DataSet dsCompany = new DataSet();
             CompanyMasterDAL companyDAL = new CompanyMasterDAL();
             try
             {
-                dsCompany = companyDAL.GetBranchCompanyByYearId(yearId);
+                return  companyDAL.GetBranchCompanyByYearId(yearId);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return dsCompany;
         }
 
         public int UpdateCompany(CompanyMasterEntities companyentity)
@@ -113,7 +109,7 @@ namespace Accountant.BL
             }
             finally { companyDAL = null; }
         }
-
+        /* Nicher tai DAL complete nei, hle eta hobe*/
         public DataSet GetCompanyAndYear()
         {
             DataSet dsCompany = new DataSet();
@@ -129,5 +125,6 @@ namespace Accountant.BL
             finally { companyDAL = null; }
             return dsCompany;
         }
+        /* Oporer tai DAL complete nei, hle eta hobe*/
     }
 }
