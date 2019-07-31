@@ -15,6 +15,8 @@ namespace CableMan.UI.Controllers
         // GET: AddNewCompany
         public ActionResult Index()
         {
+            GetAllParentCompanyList();
+
             return View();
         }
         public ActionResult SaveCompanyMaster(AccountMasterEntities account)
@@ -35,6 +37,10 @@ namespace CableMan.UI.Controllers
         {
             CompanyMasterBL companyBl = new CompanyMasterBL();
             List<CompanyMasterEntities> companylist = new List<CompanyMasterEntities>();
+
+            /*Need to be changed in future*/
+            companylist = companyBl.GetAllMasterCompanies(2017);
+
             ViewBag.masterCompanyallforDrwopdwon = companylist.Select(x =>
                     new SelectListItem()
                     {

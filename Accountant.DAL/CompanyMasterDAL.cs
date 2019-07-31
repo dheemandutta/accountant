@@ -93,6 +93,7 @@ namespace Accountant.DAL
         {
             List<CompanyMasterEntities> companyList = new List<CompanyMasterEntities>();
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString);
+            
             con.Open();
             SqlCommand cmd = new SqlCommand("usp_SelectCompanyMastersAll", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -117,10 +118,11 @@ namespace Accountant.DAL
 
         public List<CompanyMasterEntities> GetAllMasterCompanies(int yearId)
         {
-            List<CompanyMasterEntities> listMasterCompnay = new List<CompanyMasterEntities>();
-            CompanyMasterEntities company = new CompanyMasterEntities();
+           
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString);
             con.Open();
+            List<CompanyMasterEntities> listMasterCompnay = new List<CompanyMasterEntities>();
+            CompanyMasterEntities company = new CompanyMasterEntities();
             SqlCommand cmd = new SqlCommand("usp_GetAllMasterCompanies", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@YearId", yearId);
@@ -237,9 +239,10 @@ namespace Accountant.DAL
             return companyList;
         }
 
-        /*Dheeman da nicher method ta multiple table a ache, viewmodel nite hbe ki?*/
-        public DataSet GetCompanyAndYear()
+        
+        public List<CompanyMasterEntities> GetCompanyAndYear()
         {
+            List<CompanyMasterEntities> companyList = new List<CompanyMasterEntities>();
             string constring = ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(constring);
             con.Open();
@@ -249,10 +252,23 @@ namespace Accountant.DAL
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                companyList.Add(new CompanyMasterEntities
+                {
+                    CompanyId = Convert.ToInt32(dr["ComapnyId"].ToString()),
+                    CompanyName = Convert.ToString(dr["CompanyName"]),
+                    YearId = Convert.ToInt32(dr["YearId"].ToString()),
+                    YearDescription = Convert.ToString(dr["YearDescription"]),
+                    CompanyCode = Convert.ToString(dr["CompanyCode"]),
+                    StartDate = Convert.ToDateTime(dr["StartDate"].ToString()),
+                    EndDate = Convert.ToDateTime(dr["EndDate"].ToString()),
+                });
+            }
             con.Close();
-            return ds;
+            return companyList;
         }
-        /*Dheeman da oporer method ta multiple table a ache, viewmodel nite hbe ki?*/
+      
        
     }
 }

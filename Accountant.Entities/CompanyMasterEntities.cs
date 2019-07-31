@@ -18,6 +18,8 @@ namespace Accountant.Entities
 
         public int ? ParentCompanyID { get; set; }
 
-        public YearMasterEntities YearDescription { get; set; }
+        public string YearDescription { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }
