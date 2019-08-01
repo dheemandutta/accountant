@@ -16,6 +16,7 @@ namespace CableMan.UI.Controllers
         public ActionResult Index()
         {
             GetAllParentCompanyList();
+            LoadAllCompanyData();
 
             return View();
         }

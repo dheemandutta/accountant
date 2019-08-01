@@ -13,8 +13,8 @@ namespace Accountant.Entities
         public string CompanyAddress { get; set; }
         public int YearId { get; set; }
         public string CompanyCode { get; set; }
-        public bool isMaster { get; set; }
-        public bool isCopied { get; set; }
+        public Boolean isMaster { get; set; }
+        public Boolean isCopied { get; set; }
 
         public int ? ParentCompanyID { get; set; }
 

@@ -19,21 +19,6 @@ namespace Accountant.BL
             return tran.SaveCompany(compnayentity);
         }
 
-        //public DataSet GetAllCompanies()
-        //{
-        //    DataSet dsCompany = new DataSet();
-        //    CompanyMasterDAL companyDAL = new CompanyMasterDAL();
-        //    try
-        //    {
-        //        dsCompany = companyDAL.GetAllCompanies();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //    return dsCompany;
-        //}
-
         public List<CompanyMasterEntities> GetAllCompanies()
         {
             CompanyMasterDAL companyDl = new CompanyMasterDAL();
