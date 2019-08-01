@@ -15,6 +15,7 @@ namespace CableMan.UI.Controllers
         // GET: AddNewCompany
         public ActionResult Index()
         {
+            GetAllYearList();
             GetAllParentCompanyList();
             LoadAllCompanyData();
 
@@ -40,7 +41,7 @@ namespace CableMan.UI.Controllers
             List<CompanyMasterEntities> companylist = new List<CompanyMasterEntities>();
 
             /*Need to be changed in future*/
-            companylist = companyBl.GetAllMasterCompanies(2017);
+            companylist = companyBl.GetAllMasterCompanies(1);
 
             ViewBag.masterCompanyallforDrwopdwon = companylist.Select(x =>
                     new SelectListItem()
@@ -52,7 +53,15 @@ namespace CableMan.UI.Controllers
 
         public void GetAllYearList()
         {
-            
+            YearMasterBL yearbl = new YearMasterBL();
+            List<YearMasterEntities> yearsList = new List<YearMasterEntities>();
+            yearsList = yearbl.GetYears();
+            ViewBag.getallyearlist = yearsList.Select(x =>
+                  new SelectListItem
+                  {
+                      Text = x.YearDescription,
+                      Value = x.YearId.ToString()
+                  });
         }
 
         public void GetCompanyId(int CompanyId)
@@ -61,7 +70,6 @@ namespace CableMan.UI.Controllers
         }
         public JsonResult LoadAllCompanyData()
         {
-         
             CompanyMasterBL companyBl = new CompanyMasterBL();
             List<CompanyMasterEntities> companymasterList = new List<CompanyMasterEntities>();
             companymasterList = companyBl.GetAllCompanies();

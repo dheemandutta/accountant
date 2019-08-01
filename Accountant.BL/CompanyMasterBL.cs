@@ -22,7 +22,7 @@ namespace Accountant.BL
         public List<CompanyMasterEntities> GetAllCompanies()
         {
             CompanyMasterDAL companyDl = new CompanyMasterDAL();
-            return companyDl.GetAllCompnay();
+            return companyDl.GetAllCompanies();
         }
 
         public CompanyMasterEntities GetCompanyById(int companyId)

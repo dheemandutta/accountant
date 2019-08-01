@@ -89,7 +89,7 @@ namespace Accountant.DAL
             myConn.Close();
             return recordsAffected;
         }
-        public List<CompanyMasterEntities> GetAllCompnay()
+        public List<CompanyMasterEntities> GetAllCompanies()
         {
             List<CompanyMasterEntities> companyList = new List<CompanyMasterEntities>();
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString);

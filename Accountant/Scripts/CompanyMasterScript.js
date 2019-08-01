@@ -70,13 +70,13 @@ function Add() {
 }
 
 function SetUpGrid() {
-    var loadposturl = $('#LoadAllCompany').val();
+    var loadposturl = $('#loadAllCompany').val();
 
     //do not throw error
     $.fn.dataTable.ext.errMode = 'none';
     //check if datatable is already created then destroy iy and then create it
     if ($.fn.dataTable.isDataTable('#unitTable')) {
-        table = $('#unitTable').DataTable();
+        table = $('#compnayTable').DataTable();
         table.destroy();
     }
     // alert('hh');

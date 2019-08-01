@@ -45,6 +45,7 @@
     <Compile Include="AccountBL.cs" />
     <Compile Include="CompanyMasterBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="YearMasterBL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Accountant.DAL\Accountant.DAL.csproj">
