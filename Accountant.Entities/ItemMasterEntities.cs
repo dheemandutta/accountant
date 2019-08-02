@@ -11,6 +11,7 @@ namespace Accountant.Entities
         public int ID { get; set; }
         public string ItemName { get; set; }
 
+
         public int UnitID { get; set; }
         public string UnitName { get; set; }
     }
