@@ -9,7 +9,7 @@
     if ($('#drpYear').val().trim() == '') {
         isValid = false;
     }
-    /*code for commit*/
+
     if ($('#chkMasterCompany').checked == true) {
         if ($('drpCompany').val().trim() == '') {
             isValid = false;
@@ -51,7 +51,7 @@ function Add() {
         YearId: $('drpYear').val(),
         CompanyCode: $('txtCompanyCode').val(),
         isMaster: $('chkMasterCompany').val(),
-        isCopied: 1;
+        isCopied: 1,
         ParentCompanyID: $('#drpCompanyMaster').val(),
     };
 
@@ -154,4 +154,3 @@ function GetCompanyDetailsById(companyId) {
     return false;
 }
 
-function Update

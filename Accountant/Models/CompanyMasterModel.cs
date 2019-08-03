@@ -12,9 +12,14 @@ namespace Accountant.UI.Models
         public string CompanyAddress { get; set; }
         public int YearId { get; set; }
         public string CompanyCode { get; set; }
-        public bool isMaster { get; set; }
-        public bool isCopied { get; set; }
+        public Boolean isMaster { get; set; }
+        public Boolean isCopied { get; set; }
 
         public int? ParentCompanyID { get; set; }
+
+        public string YearDescription { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string AccountCode { get; set; }
     }
 }
