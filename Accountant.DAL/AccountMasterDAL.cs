@@ -157,7 +157,7 @@ namespace Accountant.DAL
 
         public int SaveAccountMaster(AccountMasterEntities account)
         {
-            SqlConnection  con = new SqlConnection(ConfigurationManager.ConnectionStrings["MyDBConnectionString"].ConnectionString);
+            SqlConnection  con = new SqlConnection(ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString);
             con.Open();
             SqlCommand cmd = new SqlCommand("usp_InsertAccountMaster", con);
             cmd.CommandType = CommandType.StoredProcedure;

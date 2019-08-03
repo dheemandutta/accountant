@@ -105,7 +105,7 @@ namespace Accountant.DAL
             {
                 companyList.Add(new CompanyMasterEntities
                 {
-                    CompanyId= Convert.ToInt32(dr["CompanyId"].ToString()),
+                   // CompanyId= Convert.ToInt32(dr["CompanyId"].ToString()),
                     CompanyName = Convert.ToString(dr["CompanyName"]),
                     YearId=Convert.ToInt32(dr["YearId"].ToString()),
                   //  YearDescription = Convert.ToString(dr["YearDescription"]),

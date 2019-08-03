@@ -64,9 +64,10 @@ namespace CableMan.UI.Controllers
                   });
         }
 
-        public void GetCompanyId(int CompanyId)
+        public ActionResult GetCompanyId(int CompanyId)
         {
-
+            CompanyMasterBL compnayBl = new CompanyMasterBL();
+            return Json(compnayBl.GetCompanyById(CompanyId), JsonRequestBehavior.AllowGet);
         }
         public JsonResult LoadAllCompanyData()
         {

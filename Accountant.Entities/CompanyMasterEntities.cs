@@ -21,5 +21,6 @@ namespace Accountant.Entities
         public string YearDescription { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public string AccountCode { get; set; }
     }
 }
