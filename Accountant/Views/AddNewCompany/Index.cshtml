@@ -18,9 +18,11 @@
 
     @*@Html.Hidden("GetAlaCarte", @Url.Action("GetAlaCarteChannelByID", "ConsumerChannel"))
         @Html.Hidden("AlaCarteChanneladd", @Url.Action("AddAlaCarteChanels", "ConsumerChannel"))*@
-    @Html.Hidden("savecompanymaster", Url.Action("SaveCompanyMaster", "company"))
+    @Html.Hidden("savecompanymaster", Url.Action("SaveCompanyMaster", "AddNewCompany"))
     @Html.Hidden("loaddata", Url.Action("LoadAllCompanyData", "AddNewCompany"))
-    @Html.Hidden("getcompanybyid", Url.Action("", "company"))
+    @Html.Hidden("getcompanybyid", Url.Action("GetCompanyId", "AddNewCompany"))
+    @Html.Hidden("updatecompanymaster",Url.Action("UpdateCompanyMaster","AddNewCompany"))
+   
 
     <div class="row" style="height:1700px;">
         <div class="col-md-7 bac" style=" width: 100%;">
@@ -60,13 +62,13 @@
                                         <div class="form-group" style="margin-right: -600px;">
                                             <label class="col-sm-2 control-label">Year:    <font color=""></font> </label>
                                             @*<div class="col-sm-10" style="width: 30%;">
-                <select name="drpYear" class="form-control" style="width: 90%;">
-                    <option value="2017">2017</option>
-                    <option value="2018">2018</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
-                </select>
-            </div>*@
+                                                    <select name="drpYear" class="form-control" style="width: 90%;">
+                                                        <option value="2017">2017</option>
+                                                        <option value="2018">2018</option>
+                                                        <option value="2019">2019</option>
+                                                        <option value="2020">2020</option>
+                                                    </select>
+                                                </div>*@
                                             <div class="col-sm-10" style="width: 30%;">@Html.DropDownListFor(model => model.YearId, (IEnumerable<SelectListItem>)ViewBag.getallyearlist, "Select", new { @class = "form-control", @id = "drpyear" }) </div>
                                         </div>
 
@@ -90,9 +92,9 @@
                                             <input type="hidden" id="#CompanyId" />
                                         </div>
                                         <button type="button" class="btn btn-primary" id="btnSave" onclick="return Add();">Save</button>
-                                        <button type="button" class="btn btn-primary" id="btnUpdate" onclick="return">Update</button>
+                                        <button type="button" class="btn btn-primary" id="btnUpdate" onclick="return Update()">Update</button>
                                         <button type="button" class="btn btn-primary" id="btnClear" onclick="clearAll();">Clear</button>
-                                   
+
                                     </form>
                                 </div>
                             </div>

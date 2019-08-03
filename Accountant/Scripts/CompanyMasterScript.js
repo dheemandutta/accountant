@@ -1,6 +1,6 @@
 ﻿function validate() {
     var isValid = true;
-    if ($('#txtCompanyName').val().trim()== ''){
+    if ($('#txtCompanyName').val().trim() == '') {
         isValid = false;
     }
     if ($('#txtAddress').val().trim() == '') {
@@ -19,11 +19,11 @@
         }
     }
     else {
-         isValid = true;
-        }
- 
+        isValid = true;
+    }
+
     if ($('#txtCompanyCode').val().trim() == '') {
-        isValid=false
+        isValid = false
     }
     return isValid;
 }
@@ -54,7 +54,7 @@ function Add() {
         isCopied: 1;
         ParentCompanyID: $('#drpCompanyMaster').val(),
     };
-    
+
     $.ajax({
         url: postUrl,
         data: JSON.stringify(company),
@@ -79,12 +79,12 @@ function Add() {
 }
 
 function SetUpGrid() {
-    var loadposturl = $('#loadAllCompany').val();
+    var loadposturl = $('#loaddata').val();
 
     //do not throw error
     $.fn.dataTable.ext.errMode = 'none';
     //check if datatable is already created then destroy iy and then create it
-    if ($.fn.dataTable.isDataTable('#unitTable')) {
+    if ($.fn.dataTable.isDataTable('#compnayTable')) {
         table = $('#compnayTable').DataTable();
         table.destroy();
     }
@@ -127,4 +127,31 @@ function SetUpGrid() {
 
 function GetCompanyDetailsById(companyId) {
 
+    var x = $('#getcompanybyid').val();
+    $.ajax({
+        url: x,
+        data: {
+            CompanyId: companyId
+        },
+        type: "GET",
+
+        contentType: "application/json;charset=UTF-8",
+        async: "false",
+        dataType: "json",
+        success: function (result) {
+            $('#txtCompanyName').val(result.CompanyName);
+            $('#CompanyId').val(result.CompanyId);
+            $('#drpyear').val(result.YearId);
+            $('#txtCompanyCode').val(result.CompanyCode);
+            $('#drpCompanyMaster').val(result.isMaster);
+            $('#btnSave').attr("disable", true);
+            $('#btnUpdate').attr("disable", false);
+        },
+        error: function (errormessage) {
+            alert(errormessage.responseText);
+        }
+    });
+    return false;
 }
+
+function Update
