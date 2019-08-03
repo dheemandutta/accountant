@@ -1,29 +1,29 @@
 ﻿function validate() {
     var isValid = true;
-    if ($('#txtCompanyName').val().trim()== ''){
+    if ($('#txtCompanyName').val().trim() === ''){
         isValid = false;
     }
-    if ($('#txtAddress').val().trim() == '') {
+    if ($('#txtAddress').val().trim() === '') {
         isValid = false;
     }
-    if ($('drpYear').val().trim() == '') {
+    if ($('drpYear').val().trim() === '') {
         isValid = false;
     }
 
-    if ($('#chkMasterCompany').checked == true) {
-        if ($('drpCompany').val().trim() == '') {
+    if ($('#chkMasterCompany').checked === true) {
+        if ($('drpCompany').val().trim() === '') {
             isValid = false;
         }
         else {
-            isValid = true
+            isValid = true;
         }
     }
     else {
          isValid = true;
         }
  
-    if ($('#txtCompanyCode').val().trim() == '') {
-        isValid=false
+    if ($('#txtCompanyCode').val().trim() === '') {
+        isValid = false;
     }
     return isValid;
 }
@@ -42,8 +42,8 @@ function Add() {
         YearId: $('drpYear').val(),
         CompanyCode: $('txtCompanyCode').val(),
         isMaster: $('chkMasterCompany').val(),
-        isCopied: 1;
-        ParentCompanyID: $('#drpCompanyMaster').val(),
+        isCopied:1,
+        ParentCompanyID: $('#drpCompanyMaster').val()
     };
     
     $.ajax({
@@ -151,7 +151,7 @@ function SetUpGrid() {
         table = $('#compnayTable').DataTable();
         table.destroy();
     }
-     alert('hh');
+     //alert('hh');
     $("#compnayTable").DataTable({
         "processing": true, // for show progress bar
         "serverSide": true, // for process server side

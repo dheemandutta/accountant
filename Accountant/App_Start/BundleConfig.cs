@@ -84,14 +84,14 @@ namespace Accountant.UI
                        "~/Content/DataTables/media/css/jquery.dataTables.min.css"));
 
 
-            // Flot chart
-            bundles.Add(new ScriptBundle("~/plugins/flot").Include(
-                      "~/Scripts/plugins/flot/jquery.flot.js",
-                      "~/Scripts/plugins/flot/jquery.flot.tooltip.min.js",
-                      "~/Scripts/plugins/flot/jquery.flot.resize.js",
-                      "~/Scripts/plugins/flot/jquery.flot.pie.js",
-                      "~/Scripts/plugins/flot/jquery.flot.time.js",
-                      "~/Scripts/plugins/flot/jquery.flot.spline.js"));
+            //// Flot chart
+            //bundles.Add(new ScriptBundle("~/plugins/flot").Include(
+            //          "~/Scripts/plugins/flot/jquery.flot.js",
+            //          "~/Scripts/plugins/flot/jquery.flot.tooltip.min.js",
+            //          "~/Scripts/plugins/flot/jquery.flot.resize.js",
+            //          "~/Scripts/plugins/flot/jquery.flot.pie.js",
+            //          "~/Scripts/plugins/flot/jquery.flot.time.js",
+            //          "~/Scripts/plugins/flot/jquery.flot.spline.js"));
 
 
             // Duallist Styless
