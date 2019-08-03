@@ -1,0 +1,209 @@
+﻿@*@model CableMan.Entities.ConsumerChannelEntities*@
+@model Accountant.Entities.CompanyMasterEntities
+@{
+    ViewBag.Title = "Company";
+}
+
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/select.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/rowReorder.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
+<link href="dist/dual-listbox.css" rel="stylesheet">
+
+<script src="~/Scripts/CompanyMaster.js"></script>
+
+<body style="background-image: url(../background/depart.jpg);
+    background-size: cover;">
+
+    @*@Html.Hidden("GetAlaCarte", @Url.Action("GetAlaCarteChannelByID", "ConsumerChannel"))
+        @Html.Hidden("AlaCarteChanneladd", @Url.Action("AddAlaCarteChanels", "ConsumerChannel"))*@
+    @Html.Hidden("savecompanymaster", Url.Action("SaveCompanyMaster", "company"))
+    @Html.Hidden("loaddata", Url.Action("LoadAllCompanyData", "AddNewCompany"))
+    @Html.Hidden("getcompanybyid", Url.Action("", "company"))
+
+    <div class="row" style="height:1700px;">
+        <div class="col-md-7 bac" style=" width: 100%;">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text m-t-lg">
+                        <h2>
+                            Add New Company
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8" style="width: 100%;">
+
+            <div style="height:900px;">
+                @*/////////////////////// class="table-responsive"///////////////////////////*@
+                <div class="card">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox float-e-margins">
+
+                                <div class="ibox-content">
+                                    <form method="get" class="form-horizontal">
+                                        <div class="form-group" style="margin-right: -600px;">
+                                            <label class="col-sm-2 control-label">Company Name:<font color=""></font> </label>
+                                            <div class="col-sm-10" style="width: 30%;"><input type="text" class="form-control" style="width: 90%;" id="txtCompanyName" placeholder="Company Name"></div>
+                                        </div>
+                                        <div class="form-group" style="margin-right: -600px;">
+                                            <label class="col-sm-2 control-label">Address:<font color=""></font> </label>
+                                            <div class="col-sm-10" style="width: 30%;">
+                                                <textarea type="text" class="form-control valid" id="txtAddress" placeholder="Address" style="width: 90% !important;"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" style="margin-right: -600px;">
+                                            <label class="col-sm-2 control-label">Year:    <font color=""></font> </label>
+                                            @*<div class="col-sm-10" style="width: 30%;">
+                                                    <select name="drpYear" class="form-control" style="width: 90%;">
+                                                        <option value="2017">2017</option>
+                                                        <option value="2018">2018</option>
+                                                        <option value="2019">2019</option>
+                                                        <option value="2020">2020</option>
+                                                    </select>
+                                                </div>*@
+                                            <div class="col-sm-10" style="width: 30%;">@Html.DropDownListFor(model => model.YearId, (IEnumerable<SelectListItem>)ViewBag.getallyearlist, "Select", new { @class = "form-control", @id = "drpyear" }) </div>
+                                        </div>
+
+                                        <div class="form-group" style="margin-right: -600px;">
+                                            <label class="col-sm-2 control-label">Master Company:</label>
+                                            <div class="col-sm-10" style="width: 30%;">
+                                                <input type="checkbox" class="form-control" style="width: 90%;" id="chkMasterCompany">
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="margin-right: -600px;">
+                                            <label class="col-sm-2 control-label">Company Code:<font color=""></font> </label>
+                                            <div class="col-sm-10" style="width: 30%;"><input type="text" class="form-control" style="width: 90%;" id="txtCompanyCode" placeholder="Company Code"></div>
+                                        </div>
+                                        <div class="form-group" style="margin-right: -600px;">
+                                            <label class="col-sm-2 control-label">Parent Company:<font color=""></font> </label>
+                                            @*<div class="col-sm-10" style="width: 30%;">@Html.DropDownListFor(model => model.itemGroupID, (IEnumerable<SelectListItem>)ViewBag.itemGroupNameforDrp, "Select", new { @class = "form-control", @id = "drplItemGroup" })</div>*@
+                                            <div class="col-sm-10" style="width: 30%;">@Html.DropDownListFor(model => model.ParentCompanyID, (IEnumerable<SelectListItem>)ViewBag.masterCompanyallforDrwopdwon, "Select", new { @class = "form-control", @id = "drpCompanyMaster" }) </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="hidden" id="#CompanyId" />
+                                        </div>
+                                        <button type="button" class="btn btn-primary" id="btnSave" onclick="return Add();">Save</button>
+                                        <button type="button" class="btn btn-primary" id="btnUpdate" onclick="return">Update</button>
+                                        <button type="button" class="btn btn-primary" id="btnClear" onclick="return">Clear</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-md-8" style="width: 93.667%;">
+                        <div class="card">
+                            <div style="width:99%; margin:0 auto" class="tablecontainer">
+
+                                <input type="hidden" id="hdncount" />
+                                <input type="hidden" id="hdnrole" />
+                                <input type="hidden" id="hdndbfilePath" />
+
+                                <div class="table-responsive" style="height:900px;">
+                                    @*/////////////////////// class="table-responsive"///////////////////////////*@
+                                    <h2>
+                                        Company List
+                                    </h2>
+                                    <table id="compnayTable" class="display" cellspacing="0" style="width: 93.667%;">
+                                        <thead>
+                                            <tr>
+                                                <th>Company</th>
+                                                <th>Company Code</th>
+                                                <th>Financial Year</th>
+                                                @*<th>btn </th>
+                                                    <th> btn</th>*@
+                                            </tr>
+                                        </thead>
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        @*/////////////////////// class="table-responsive"///////////////////////////*@
+
+    </div>
+</body>
+
+
+
+
+@section Styles {
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/dateRangeStyles")
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/switcheryStyles")
+    @Styles.Render("~/plugins/jasnyBootstrapStyles")
+    @Styles.Render("~/plugins/nouiSliderStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/Content/plugins/ionRangeSlider/ionRangeStyles")
+    @Styles.Render("~/plugins/imagecropperStyles")
+    @Styles.Render("~/Content/plugins/colorpicker/colorpickerStyles")
+    @Styles.Render("~/plugins/select2Styles")
+    @Styles.Render("~/plugins/touchSpinStyles")
+    @Styles.Render("~/plugins/tagInputsStyles")
+    @Styles.Render("~/plugins/duallistStyles")
+}
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/ionRange")
+    @Scripts.Render("~/plugins/nouiSlider")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    @Scripts.Render("~/plugins/switchery")
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/knob")
+    @Scripts.Render("~/plugins/imagecropper")
+    @Scripts.Render("~/plugins/colorpicker")
+    @Scripts.Render("~/plugins/clockpicker")
+    @Scripts.Render("~/plugins/dateRange")
+    @Scripts.Render("~/plugins/select2")
+    @Scripts.Render("~/plugins/touchSpin")
+    @Scripts.Render("~/plugins/tagInputs")
+    @Scripts.Render("~/plugins/duallist")
+
+    <script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.rowReorder.min.js"></script>
+
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+
+    <script src="dist/dual-listbox.js"></script>
+
+    <script src="~/Scripts/jquery.typeahead.js"></script>
+    <script src="~/Scripts/jquery.bootstrap-duallistbox.min.js"></script>
+    <link href="~/Content/bootstrap-duallistbox.css" rel="stylesheet" />
+    <script src="~/Scripts/gijgo/combined/gijgo.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            SetUpGrid();
+
+        });
+    </script>
+}

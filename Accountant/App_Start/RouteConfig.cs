@@ -16,7 +16,7 @@ namespace Accountant.UI
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "ItemMaster", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "AddNewCompany", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
