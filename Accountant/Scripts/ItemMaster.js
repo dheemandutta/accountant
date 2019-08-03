@@ -76,7 +76,7 @@ function loadData() {
     });
 }
 
-function SetUpGrid() {
+function SetUpGrid2() {
     var loadposturl = $('#loaddata').val();
 
     //do not throw error
