@@ -6,10 +6,10 @@
     if ($('#txtAddress').val().trim() == '') {
         isValid = false;
     }
-    if ($('drpYear').val().trim() == '') {
+    if ($('#drpYear').val().trim() == '') {
         isValid = false;
     }
-
+    /*code for commit*/
     if ($('#chkMasterCompany').checked == true) {
         if ($('drpCompany').val().trim() == '') {
             isValid = false;
@@ -26,6 +26,15 @@
         isValid=false
     }
     return isValid;
+}
+
+function clearAll() {
+    alert("Hi");
+    $('#txtCompanyName').val("");
+    $('#txtAddress').val("");
+    //$('#drpYear').val('');
+    //$('chkMasterCompany').checked = false;
+    $('#txtCompanyCode').val("");
 }
 
 function Add() {
