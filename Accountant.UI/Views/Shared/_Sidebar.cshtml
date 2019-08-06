@@ -27,6 +27,18 @@
             <li class="nav-heading">
                 <span>Main Navigation</span>
             </li>
+
+            @*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*@
+
+            <li class="@Html.isActive(controller: "Company")">
+                <a href="@Url.Action("Index", "Company")" title="Company">
+                    <em class="icon-trophy"></em>
+                    <span>Movie App</span>
+                </a>
+            </li>
+
+            @*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*@
+
             <li class="@Html.isActive(controller: "Dashboard")">
                 <a href="#dashboard" title="Dashboard" data-toggle="collapse">
                     <div class="label label-info pull-right">3</div>
@@ -55,7 +67,7 @@
             <li class="@Html.isActive(controller: "Widgets")">
                 <a href="@Url.Action("Index", "Widgets")" title="Widgets">
                     <div class="label label-success pull-right">30</div>
-                    <em class="icon-grid"></em>                    
+                    <em class="icon-grid"></em>
                     <span data-localize="sidebar.nav.WIDGETS">Widgets</span>
                 </a>
             </li>

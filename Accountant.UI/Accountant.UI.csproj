@@ -192,6 +192,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ChartsController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DocumentationController.cs" />
     <Compile Include="Controllers\EcommerceController.cs" />
@@ -328,6 +329,8 @@
     <Content Include="Content\Json\jqgrid-tree.json" />
     <Content Include="Content\Json\jqgrid.json" />
     <Content Include="Content\Json\xeditable-groups.json" />
+    <Content Include="Scripts\CompanyMaster.js" />
+    <Content Include="Scripts\CompanyMasterScript.js" />
     <Content Include="Scripts\demo\demo-dashboard.js" />
     <Content Include="Scripts\demo\demo-datatable.js" />
     <Content Include="Scripts\demo\demo-flot.js" />
@@ -888,6 +891,7 @@
     <Content Include="Vendor\weather-icons\font\weathericons-regular-webfont.ttf" />
     <Content Include="Vendor\weather-icons\font\weathericons-regular-webfont.woff" />
     <Content Include="Vendor\weather-icons\font\weathericons-regular-webfont.woff2" />
+    <Content Include="Views\Company\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Accountant\Accountant.Base\Accountant.Base.csproj">
