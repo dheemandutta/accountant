@@ -26,14 +26,15 @@ namespace Accountant.UI.Controllers
       
 
 
-        public ActionResult SaveCompanyMaster(AccountMasterEntities account)
+        public JsonResult SaveCompanyMaster(CompanyMasterEntities company)
         {
-            AccountBL accountBl = new AccountBL();
-            int recordsaffected = accountBl.SaveAccountMaster(account);
-            return Json(recordsaffected, JsonRequestBehavior.AllowGet);
+            CompanyMasterBL companyMasterBL = new CompanyMasterBL();
+            //int recordsaffected = companyMasterBL.SaveCompany(company);
+            //return Json(recordsaffected, JsonRequestBehavior.AllowGet);
+            return Json(companyMasterBL.SaveCompany(company), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult UpdateCompanyMaster(CompanyMasterEntities company)
+        public JsonResult UpdateCompanyMaster(CompanyMasterEntities company)
         {
             CompanyMasterBL companybl = new CompanyMasterBL();
             int recordAffected = companybl.UpdateCompany(company);
@@ -52,8 +53,19 @@ namespace Accountant.UI.Controllers
                     new SelectListItem()
                     {
                         Text = x.CompanyName,
-                        Value = x.ParentCompanyID.ToString()
+                        Value = x.CompanyId.ToString()
                     });
+        }
+
+        public JsonResult GetAllParentCompanyData()
+        {
+            CompanyMasterBL companyBl = new CompanyMasterBL();
+            List<CompanyMasterEntities> companylist = new List<CompanyMasterEntities>();
+
+            /*Need to be changed in future   Deep */
+            companylist = companyBl.GetAllMasterCompanies(1);
+
+            return Json(companylist, JsonRequestBehavior.AllowGet);
         }
 
         public void GetAllYearList()
@@ -69,7 +81,7 @@ namespace Accountant.UI.Controllers
                   });
         }
 
-        public ActionResult GetCompanyId(int CompanyId)
+        public JsonResult GetCompanyId(int CompanyId)
         {
             CompanyMasterBL compnayBl = new CompanyMasterBL();
             return Json(compnayBl.GetCompanyById(CompanyId), JsonRequestBehavior.AllowGet);

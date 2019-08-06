@@ -12,42 +12,11 @@ namespace Accountant.DAL
 {
     public class CompanyMasterDAL
     {
-
-        //If there is no parent compant
-        public int SaveCompanyMaster(CompanyMasterEntities company, SqlConnection con, SqlTransaction tran)
-        {
-           
-            SqlCommand cmd = new SqlCommand("usp_InsertCompanyMaster", con,tran);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@CompanyName", company.CompanyName);
-            cmd.Parameters.AddWithValue("@CompanyAddress", company.CompanyAddress);
-            cmd.Parameters.AddWithValue("@YearId", company.YearId);
-
-            if(string.IsNullOrEmpty(company.ParentCompanyID.ToString())||(company.ParentCompanyID==0))
-            {
-                cmd.Parameters.AddWithValue("@ParentCompanyId", company.ParentCompanyID);
-            }
-            else
-            {
-                cmd.Parameters.AddWithValue("@ParentCompanyId", company.ParentCompanyID);
-            }
-
-            cmd.Parameters.AddWithValue("@CompanyId", company.CompanyId);
-
-            cmd.Parameters.Add(new SqlParameter("CompanyId", SqlDbType.Int));
-            cmd.Parameters[6].Direction = ParameterDirection.Output;
-
-            cmd.ExecuteNonQuery();
-            int companyID = (int)cmd.Parameters[6].Value;
-            return companyID;
-
-        }
-
         public int SaveCompany(CompanyMasterEntities company)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString);
             con.Open();
-            SqlCommand cmd = new SqlCommand("usp_InsertCompanyMaster", con);
+            SqlCommand cmd = new SqlCommand("usp_InsertCompanyMaster_Web", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@CompanyName", company.CompanyName);
             cmd.Parameters.AddWithValue("@CompanyAddress", company.CompanyAddress);
@@ -57,7 +26,7 @@ namespace Accountant.DAL
 
             if (string.IsNullOrEmpty(company.ParentCompanyID.ToString()) || (company.ParentCompanyID == 0))
             {
-                cmd.Parameters.AddWithValue("@ParentCompanyId", company.ParentCompanyID);
+                cmd.Parameters.AddWithValue("@ParentCompanyId", DBNull.Value);
             }
             else
             {
@@ -67,10 +36,9 @@ namespace Accountant.DAL
             cmd.Parameters.Add(new SqlParameter("@CompanyId", SqlDbType.Int));
             cmd.Parameters[6].Direction = ParameterDirection.Output;
 
-            cmd.ExecuteNonQuery();
-
-            int companyID = (int)cmd.Parameters[6].Value;
-            return companyID;
+            int recordsAffected = cmd.ExecuteNonQuery();
+            con.Close();
+            return recordsAffected;
         }
 
         public int UpdateCompany(CompanyMasterEntities company)

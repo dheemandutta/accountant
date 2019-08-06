@@ -12,11 +12,10 @@ namespace Accountant.BL
 {
     public class CompanyMasterBL
     {
-        public bool SaveCompany (CompanyMasterEntities compnayentity)
+        public int SaveCompany (CompanyMasterEntities company)
         {
-            //CompanyMasterEntities compnayentity = new CompanyMasterEntities();
-            TranCompanyMaster tran = new TranCompanyMaster();
-            return tran.SaveCompany(compnayentity);
+            CompanyMasterDAL comp = new CompanyMasterDAL();
+            return comp.SaveCompany(company);
         }
 
         public List<CompanyMasterEntities> GetAllCompanies(int pageIndex, ref int recordCount, int length)

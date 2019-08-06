@@ -1,4 +1,5 @@
-﻿function validate() {
+﻿
+function validate() {
     var isValid = true;
     if ($('#txtCompanyName').val().trim() === ''){
         isValid = false;
@@ -30,19 +31,23 @@
 
 function Add() {
     var postUrl = $('#savecompanymaster').val();
-    var res = validate;
-    if (res == false) {
-        return false;
-    }
+    var postUrl1 = $('#getAllParentCompanyData').val();
+    //var res = validate;
+    //if (res === false) {
+    //    return false;
+    //}
+
+    var chkstatus = $('#chkMasterCompany').is(":checked");
+    //alert($('#drpCompanyMaster').val());
 
     var company = {
         CompanyId: $('#CompanyId').val(),
         CompanyName: $('#txtCompanyName').val(),
-        CompanyAddress: $('txtAddress').val(),
-        YearId: $('drpYear').val(),
-        CompanyCode: $('txtCompanyCode').val(),
-        isMaster: $('chkMasterCompany').val(),
-        isCopied:1,
+        CompanyAddress: $('#txtAddress').val(),
+        YearId: $('#drpYear').val(),
+        CompanyCode: $('#txtCompanyCode').val(),
+        isMaster: chkstatus,
+        //isCopied:1,
         ParentCompanyID: $('#drpCompanyMaster').val()
     };
     
@@ -53,14 +58,23 @@ function Add() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         succes: function (result) {
-            if (result > 0) {
+            //if (result > 0) {
                 alert("Data saved successfully");
-                $('#myModal').modal('hide');
+                //$('#myModal').modal('hide');
 
-            }
-            else {
-                alert("Data not saved");
-            }
+            SetUpGrid();
+
+                $('#drpCompanyMaster').empty();
+                $.getJSON(postUrl1, function (data) {
+                    $.each(data, function (key, entry) {
+                        //alert(entry.CompanyName);
+                        console.log(entry);
+                    });
+                });
+            //}
+            //else {
+              //  alert("Data not saved");
+           // }
         },
 
         error: function (errormessage) {
