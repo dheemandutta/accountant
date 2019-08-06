@@ -74,8 +74,9 @@ function Add() {
     $.post(postUrl,
         { company },
         function (data, status, jqXHR) {
-            alert('Data Saved Successfully');
+            //alert('Data Saved Successfully');
             SetUpGrid();
+            clearTextBox();
             $('#drpCompanyMaster').empty();
 
             $.getJSON(postUrl1, function (data) {
@@ -87,6 +88,7 @@ function Add() {
                 });
 
         }).done(function () {
+
         }).fail(function () {
             alert('Data Not Saved');
         });
