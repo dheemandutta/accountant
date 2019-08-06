@@ -1,0 +1,173 @@
+﻿@*@model CableMan.Entities.ConsumerChannelEntities*@
+@model Accountant.Entities.CompanyMasterEntities
+@{
+    ViewBag.Title = "Company";
+}
+
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/CompanyMaster.js"></script>
+
+<body style="background-image: url(../background/depart.jpg);
+    background-size: cover;">
+
+
+    @Html.Hidden("savecompanymaster", @Url.Action("SaveCompanyMaster", "Company"))
+    @Html.Hidden("loaddata", @Url.Action("LoadAllCompanyData", "Company"))
+    @Html.Hidden("getcompanybyid", @Url.Action("GetCompanyId", "Company"))
+    @Html.Hidden("updatecompanymaster", @Url.Action("UpdateCompanyMaster", "Company"))
+
+    @Html.Hidden("getAllParentCompanyData", @Url.Action("GetAllParentCompanyData", "Company"))
+
+    <div class="row" style="height:1700px;">
+        <div class="col-md-7 bac" style=" width: 100%;">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text m-t-lg">
+                        <h2>
+                            Add New Company
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8" style="width: 100%;">
+
+            <div style="height:900px;">
+                @*/////////////////////// class="table-responsive"///////////////////////////*@
+                <div class="card">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox float-e-margins">
+
+                                <div class="ibox-content">
+                                    <form method="get" class="form-horizontal">
+                                        <div class="form-group" style="margin-right: -600px;">
+                                            <label class="col-sm-2 control-label">Company Name:<font color=""></font> </label>
+                                            <div class="col-sm-10" style="width: 30%;"><input type="text" class="form-control" style="width: 90%;" id="txtCompanyName" placeholder="Company Name"></div>
+                                        </div>
+                                        <div class="form-group" style="margin-right: -600px;">
+                                            <label class="col-sm-2 control-label">Address:<font color=""></font> </label>
+                                            <div class="col-sm-10" style="width: 30%;">
+                                                <textarea type="text" class="form-control valid" id="txtAddress" placeholder="Address" style="width: 90% !important;"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" style="margin-right: -600px;">
+                                            <label class="col-sm-2 control-label">Year:    <font color=""></font> </label>
+
+                                            <div class="col-sm-10" style="width: 30%;">@Html.DropDownListFor(model => model.YearId, (IEnumerable<SelectListItem>)ViewBag.getallyearlist, "Select", new { @class = "form-control", @id = "drpYear" }) </div>
+                                        </div>
+
+                                        <div class="form-group" style="margin-right: -600px;">
+                                            @*<label class="col-sm-2 control-label">Master Company:</label>*@
+                                            @*<div class="col-sm-10" style="width: 30%;">
+                                                <input type="checkbox" class="form-control" style="width: 90%;" id="chkMasterCompany">
+                                                </div>*@
+                                        </div>
+                                        <div class="form-group" style="margin-right: -600px;">
+                                            <label class="col-sm-2 control-label">Company Code:<font color=""></font> </label>
+                                            <div class="col-sm-10" style="width: 30%;"><input type="text" class="form-control" style="width: 90%;" id="txtCompanyCode" placeholder="Company Code"></div>
+                                        </div>
+
+
+                                        <div class="form-group" style="margin-right: -600px;">
+                                            <label class="col-sm-2 control-label">Parent Company:<font color=""></font> </label>
+                                            @*<div class="col-sm-10" style="width: 30%;">@Html.DropDownListFor(model => model.itemGroupID, (IEnumerable<SelectListItem>)ViewBag.itemGroupNameforDrp, "Select", new { @class = "form-control", @id = "drplItemGroup" })</div>*@
+                                            <div class="col-sm-10" style="width: 15%;">@Html.DropDownListFor(model => model.ParentCompanyID, (IEnumerable<SelectListItem>)ViewBag.masterCompanyallforDrwopdwon, "Select", new { @class = "form-control", @id = "drpCompanyMaster" }) </div>
+
+
+                                            <div class="checkbox c-checkbox pull-left mt0">
+                                                <label>
+                                                    <input type="checkbox" value="" name="chkMasterCompany" id="chkMasterCompany" />
+                                                    <span class="fa fa-check"></span>Master Company
+                                                </label>
+                                            </div>
+
+                                        </div>
+
+
+
+
+
+
+
+                                        <div class="form-group">
+                                            <input type="hidden" id="#CompanyId" />
+                                        </div>
+                                        <button type="button" class="btn btn-primary" id="btnSave" onclick="return Add();">Save</button>
+                                        <button type="button" class="btn btn-primary" id="btnClear" onclick="clearTextBox();">Clear</button>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-md-8" style="width: 93.667%;">
+                        <div class="card">
+                            <div style="width:99%; margin:0 auto" class="tablecontainer">
+
+                                <input type="hidden" id="hdncount" />
+                                <input type="hidden" id="hdnrole" />
+                                <input type="hidden" id="hdndbfilePath" />
+
+                                <div class="table-responsive" style="height:900px;">
+                                    @*/////////////////////// class="table-responsive"///////////////////////////*@
+                                    <h2>
+                                        Company List
+                                    </h2>
+                                    <table id="compnayTable" class="table table-striped table-bordered table-hover" cellspacing="0" style="width: 93.667%;">
+                                        <thead>
+                                            <tr>
+                                                <th>Company</th>
+                                                <th>Company Code</th>
+                                                <th>Financial Year</th>
+                                                @*<th>btn </th>
+                                                    <th> btn</th>*@
+                                            </tr>
+                                        </thead>
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        @*/////////////////////// class="table-responsive"///////////////////////////*@
+
+    </div>
+</body>
+
+
+
+
+@section Styles {
+    @Styles.Render("~/bundles/datatablesCss")
+}
+@section Scripts {
+   
+    @Scripts.Render("~/bundles/datatables")
+    @Scripts.Render("~/bundles/demoDatatable")
+
+}
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        SetUpGrid();
+
+    });
+</script>

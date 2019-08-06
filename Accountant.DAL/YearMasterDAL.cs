@@ -22,6 +22,7 @@ namespace Accountant.DAL
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
+            con.Close();            
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
                 yearList.Add(new YearMasterEntities
@@ -34,7 +35,7 @@ namespace Accountant.DAL
                 });
             }
             return yearList;
-            con.Close();
+            
         }
     }
 }
