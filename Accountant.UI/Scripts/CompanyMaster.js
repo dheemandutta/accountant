@@ -69,37 +69,59 @@ function Add() {
         //isCopied:1,
         ParentCompanyID: $('#drpCompanyMaster').val()
     };
-    
-    $.ajax({
-        url: postUrl,
-        data: JSON.stringify(company),
-        type: "POST",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        succes: function (result) {
-            //if (result > 0) {
-                alert("Data saved successfully");
-            //$('#myModal').modal('hide');
-            alert(hi);
-            loadData();
-            clearTextBox();
-                //$('#drpCompanyMaster').empty();
-                //$.getJSON(postUrl1, function (data) {
-                //    $.each(data, function (key, entry) {
-                //        //alert(entry.CompanyName);
-                //        console.log(entry);
-                //    });
-                //});
-            //}
-            //else {
-              //  alert("Data not saved");
-           // }
-        },
 
-        error: function (errormessage) {
-            alert(errormessage.responseText);
-        }
-    });
+    $.post(postUrl,
+        { company },
+        function (data, status, jqXHR) {
+            alert('Data Saved Successfully');
+            SetUpGrid();
+            $('#drpCompanyMaster').empty();
+
+            $.getJSON(postUrl1, function (data) {
+                    $.each(data, function (key, entry) {
+                        //alert(entry.CompanyName);
+                        console.log(entry);
+                        $('#drpCompanyMaster').append($('<option></option>').attr('value', entry.CompanyId).text(entry.CompanyName));
+                    });
+                });
+
+        }).done(function () {
+        }).fail(function () {
+            alert('Data Not Saved');
+        });
+    
+    //$.ajax({
+    //    url: postUrl,
+    //    data: JSON.stringify(company),
+    //    type: "POST",
+    //    contentType: "application/json;charset=utf-8",
+    //    dataType: "json",
+    //    succes: function (result) {
+    //        //if (result > 0) {
+    //            alert("Data saved successfully");
+    //        //$('#myModal').modal('hide');
+    //        alert(hi);
+    //        loadData();
+    //        clearTextBox();
+    //            //$('#drpCompanyMaster').empty();
+    //            //$.getJSON(postUrl1, function (data) {
+    //            //    $.each(data, function (key, entry) {
+    //            //        //alert(entry.CompanyName);
+    //            //        console.log(entry);
+    //            //    });
+    //            //});
+    //        //}
+    //        //else {
+    //          //  alert("Data not saved");
+    //       // }
+    //    },
+
+    //    error: function (errormessage) {
+    //        alert(errormessage.responseText);
+    //    }
+    //});
+
+
 }
 
 
