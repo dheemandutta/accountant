@@ -29,6 +29,25 @@ function validate() {
     return isValid;
 }
 
+function clearTextBox() {
+
+    $('#CompanyId').val("");
+    $('#txtCompanyName').val("");
+    $('#txtAddress').val("");
+    $('#txtCompanyCode').val("");
+
+    $('#drpYear').val("");
+    //var DrpYear = $('#drpYear');
+    //DrpYear.empty();
+
+    $('#drpCompanyMaster').val("");
+    //var DrpCompanyMaster = $('#drpCompanyMaster');
+    //DrpCompanyMaster.empty();
+
+    //$('#btnUpdate').hide();
+    //$('#btnAdd').show();
+}
+
 function Add() {
     var postUrl = $('#savecompanymaster').val();
     var postUrl1 = $('#getAllParentCompanyData').val();
@@ -60,17 +79,17 @@ function Add() {
         succes: function (result) {
             //if (result > 0) {
                 alert("Data saved successfully");
-                //$('#myModal').modal('hide');
-
-            SetUpGrid();
-
-                $('#drpCompanyMaster').empty();
-                $.getJSON(postUrl1, function (data) {
-                    $.each(data, function (key, entry) {
-                        //alert(entry.CompanyName);
-                        console.log(entry);
-                    });
-                });
+            //$('#myModal').modal('hide');
+            alert(hi);
+            loadData();
+            clearTextBox();
+                //$('#drpCompanyMaster').empty();
+                //$.getJSON(postUrl1, function (data) {
+                //    $.each(data, function (key, entry) {
+                //        //alert(entry.CompanyName);
+                //        console.log(entry);
+                //    });
+                //});
             //}
             //else {
               //  alert("Data not saved");
