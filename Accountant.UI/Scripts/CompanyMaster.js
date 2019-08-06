@@ -44,6 +44,7 @@ function clearTextBox() {
     //var DrpCompanyMaster = $('#drpCompanyMaster');
     //DrpCompanyMaster.empty();
 
+    $('input:checkbox').removeAttr('checked');
     //$('#btnUpdate').hide();
     //$('#btnAdd').show();
 }
