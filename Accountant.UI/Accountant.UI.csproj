@@ -330,7 +330,6 @@
     <Content Include="Content\Json\jqgrid.json" />
     <Content Include="Content\Json\xeditable-groups.json" />
     <Content Include="Scripts\CompanyMaster.js" />
-    <Content Include="Scripts\CompanyMasterScript.js" />
     <Content Include="Scripts\demo\demo-dashboard.js" />
     <Content Include="Scripts\demo\demo-datatable.js" />
     <Content Include="Scripts\demo\demo-flot.js" />
@@ -346,6 +345,11 @@
     <Content Include="Scripts\demo\demo-vector-map.js" />
     <Content Include="Scripts\demo\demo-wizard.js" />
     <Content Include="Scripts\demo\demo-xeditable.js" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Vendor\animate.css\animate.min.css" />
     <Content Include="Vendor\animo.js\animo.js" />
     <Content Include="Vendor\blueimp-canvas-to-blob\js\canvas-to-blob.js" />
@@ -892,6 +896,8 @@
     <Content Include="Vendor\weather-icons\font\weathericons-regular-webfont.woff" />
     <Content Include="Vendor\weather-icons\font\weathericons-regular-webfont.woff2" />
     <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Accountant\Accountant.Base\Accountant.Base.csproj">
