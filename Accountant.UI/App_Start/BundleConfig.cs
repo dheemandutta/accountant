@@ -19,6 +19,16 @@ namespace Accountant.UI
                 "~/Content/app/css/bootstrap.css", new CssRewriteUrlTransform()
             ));
 
+            //jquery
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                        "~/Vendor/jquery/dist/jquery.js"
+            ));
+
+           // bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+           //            "~/Scripts/jquery-3.4.1.min.js"
+           //));
+
             bundles.Add(new ScriptBundle("~/bundles/Angle").Include(
                 // App init
                 "~/Scripts/app/app.init.js",
@@ -124,9 +134,6 @@ namespace Accountant.UI
 
             // Main Vendor
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Vendor/jquery/dist/jquery.js"
-            ));
 
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Vendor/modernizr/modernizr.custom.js"
