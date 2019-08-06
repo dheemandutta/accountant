@@ -12,6 +12,7 @@ namespace Accountant.DAL
 {
     public class CompanyMasterDAL
     {
+
         //If there is no parent compant
         public int SaveCompanyMaster(CompanyMasterEntities company, SqlConnection con, SqlTransaction tran)
         {
