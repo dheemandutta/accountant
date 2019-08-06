@@ -19,10 +19,10 @@ namespace Accountant.BL
             return tran.SaveCompany(compnayentity);
         }
 
-        public List<CompanyMasterEntities> GetAllCompanies()
+        public List<CompanyMasterEntities> GetAllCompanies(int pageIndex, ref int recordCount, int length)
         {
             CompanyMasterDAL companyDl = new CompanyMasterDAL();
-            return companyDl.GetAllCompanies();
+            return companyDl.GetAllCompanies(pageIndex, ref recordCount, length);
         }
 
         public CompanyMasterEntities GetCompanyById(int companyId)

@@ -74,14 +74,43 @@ namespace Accountant.UI.Controllers
             CompanyMasterBL compnayBl = new CompanyMasterBL();
             return Json(compnayBl.GetCompanyById(CompanyId), JsonRequestBehavior.AllowGet);
         }
+      
+
         public JsonResult LoadAllCompanyData()
         {
-            CompanyMasterBL companyBl = new CompanyMasterBL();
-            List<CompanyMasterEntities> companymasterList = new List<CompanyMasterEntities>();
-            companymasterList = companyBl.GetAllCompanies();
-            var data = companymasterList;
-            return Json(JsonRequestBehavior.AllowGet);
+            int draw, start, length;
+            int pageIndex = 0;
 
+            if (null != Request.Form.GetValues("draw"))
+            {
+                draw = int.Parse(Request.Form.GetValues("draw").FirstOrDefault().ToString());
+                start = int.Parse(Request.Form.GetValues("start").FirstOrDefault().ToString());
+                length = int.Parse(Request.Form.GetValues("length").FirstOrDefault().ToString());
+            }
+            else
+            {
+                draw = 1;
+                start = 0;
+                length = 50;
+            }
+
+            if (start == 0)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                pageIndex = (start / length) + 1;
+            }
+
+            CompanyMasterBL companyBl = new CompanyMasterBL();
+            int totalrecords = 0;
+
+            List<CompanyMasterEntities> companymasterList = new List<CompanyMasterEntities>();
+            companymasterList = companyBl.GetAllCompanies(pageIndex, ref totalrecords, length/*, int.Parse(Session["VesselID"].ToString())*/);
+
+            var data = companymasterList;
+            return Json(new { draw = draw, recordsFiltered = totalrecords, recordsTotal = totalrecords, data = data }, JsonRequestBehavior.AllowGet);
         }
     }
 }

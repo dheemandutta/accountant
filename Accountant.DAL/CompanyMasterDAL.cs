@@ -90,30 +90,40 @@ namespace Accountant.DAL
             myConn.Close();
             return recordsAffected;
         }
-        public List<CompanyMasterEntities> GetAllCompanies()
+        public List<CompanyMasterEntities> GetAllCompanies(int pageIndex, ref int recordCount, int length)
         {
             List<CompanyMasterEntities> companyList = new List<CompanyMasterEntities>();
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString);
-            
-            con.Open();
-            SqlCommand cmd = new SqlCommand("usp_SelectCompanyMastersAll", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-
-            foreach (DataRow dr in ds.Tables[0].Rows)
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["AccountantDBConnectionString"].ConnectionString))
             {
-                companyList.Add(new CompanyMasterEntities
+                using (SqlCommand cmd = new SqlCommand("usp_SelectCompanyMastersAll_New", con))
                 {
-                   // CompanyId= Convert.ToInt32(dr["CompanyId"].ToString()),
-                    CompanyName = Convert.ToString(dr["CompanyName"]),
-                    YearId=Convert.ToInt32(dr["YearId"].ToString()),
-                  //  YearDescription = Convert.ToString(dr["YearDescription"]),
-                    CompanyCode=Convert.ToString(dr["CompanyCode"]),
-                });
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@PageIndex", pageIndex);
+                    cmd.Parameters.AddWithValue("@PageSize", length);
+                    cmd.Parameters.Add("@RecordCount", SqlDbType.Int, 4);
+                    cmd.Parameters["@RecordCount"].Direction = ParameterDirection.Output;
+                    // cmd.Parameters.AddWithValue("@VesselID", VesselID);
+                    con.Open();
+
+                    DataSet ds = new DataSet();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(ds);
+
+                    foreach (DataRow dr in ds.Tables[0].Rows)
+                    {
+                        companyList.Add(new CompanyMasterEntities
+                        {
+                            // CompanyId= Convert.ToInt32(dr["CompanyId"].ToString()),
+                            CompanyName = Convert.ToString(dr["CompanyName"]),
+                            YearId = Convert.ToInt32(dr["YearId"].ToString()),
+                            //  YearDescription = Convert.ToString(dr["YearDescription"]),
+                            CompanyCode = Convert.ToString(dr["CompanyCode"]),
+                        });
+                    }
+                    recordCount = Convert.ToInt32(cmd.Parameters["@RecordCount"].Value);
+                    con.Close();
+                }
             }
-            con.Close();
             return companyList;
         }
 
