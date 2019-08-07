@@ -36,7 +36,13 @@
                     <span>Company</span>
                 </a>
             </li>
-
+            
+            <li class="@Html.isActive(controller: "Customer")">
+                <a href="@Url.Action("Index", "Customer")" title="Customer">
+                    <em class="icon-trophy"></em>
+                    <span>Customer</span>
+                </a>
+            </li>
             @*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*@
 
             <li class="@Html.isActive(controller: "Dashboard")">

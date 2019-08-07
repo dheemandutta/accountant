@@ -45,6 +45,7 @@
     <Compile Include="AccountMasterEntities.cs" />
     <Compile Include="CompanyMasterEntities.cs" />
     <Compile Include="CompanyRelationEntities.cs" />
+    <Compile Include="CustomerEntities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="YearMasterEntities.cs" />
   </ItemGroup>
