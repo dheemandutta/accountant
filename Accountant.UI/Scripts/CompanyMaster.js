@@ -1,32 +1,16 @@
 ﻿
 function validate() {
-    var isValid = true;
-    if ($('#txtCompanyName').val().trim() === ''){
-        isValid = false;
-    }
-    if ($('#txtAddress').val().trim() === '') {
-        isValid = false;
-    }
-    if ($('drpYear').val().trim() === '') {
-        isValid = false;
-    }
 
-    if ($('#chkMasterCompany').checked === true) {
-        if ($('drpCompany').val().trim() === '') {
-            isValid = false;
-        }
-        else {
-            isValid = true;
-        }
+    var myform = $('#companyForm');
+    if (myform.parsley().validate()) {
+        //alert('valid');
+        return true;
     }
     else {
-         isValid = true;
+        //alert('invalid');
+        return false;
         }
- 
-    if ($('#txtCompanyCode').val().trim() === '') {
-        isValid = false;
-    }
-    return isValid;
+
 }
 
 function clearTextBox() {
@@ -52,10 +36,11 @@ function clearTextBox() {
 function Add() {
     var postUrl = $('#savecompanymaster').val();
     var postUrl1 = $('#getAllParentCompanyData').val();
-    //var res = validate;
-    //if (res === false) {
-    //    return false;
-    //}
+
+    var res = validate();
+    if (res === false) {
+        return false;
+    }
 
     var chkstatus = $('#chkMasterCompany').is(":checked");
     //alert($('#drpCompanyMaster').val());
@@ -88,9 +73,9 @@ function Add() {
                 });
 
         }).done(function () {
-
+            swal("Good job!", "Data Saved Successfully", "success");
         }).fail(function () {
-            alert('Data Not Saved');
+            swal("Sorry!", "Data Not Saved", "error");
         });
     
     //$.ajax({
