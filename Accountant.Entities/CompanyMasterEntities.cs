@@ -12,6 +12,7 @@ namespace Accountant.Entities
         public string CompanyName { get; set; }
         public string CompanyAddress { get; set; }
         public int YearId { get; set; }
+        public string Year { get; set; }
         public string CompanyCode { get; set; }
         public Boolean isMaster { get; set; }
         public Boolean isCopied { get; set; }

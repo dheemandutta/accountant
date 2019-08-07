@@ -166,7 +166,7 @@ function SetUpGrid() {
                 "data": "CompanyName", "name": "CompanyName", "autoWidth": true
             },
             {
-                "data": "YearId", "name": "YearId", "autoWidth": true
+                "data": "Year", "name": "Year", "autoWidth": true
             },
             {
                 "data": "CompanyCode", "name": "CompanyCode", "authoWidth": true

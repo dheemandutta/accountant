@@ -83,7 +83,8 @@ namespace Accountant.DAL
                         {
                             // CompanyId= Convert.ToInt32(dr["CompanyId"].ToString()),
                             CompanyName = Convert.ToString(dr["CompanyName"]),
-                            YearId = Convert.ToInt32(dr["YearId"].ToString()),
+                            //YearId = Convert.ToInt32(dr["YearId"].ToString()),
+                            Year = Convert.ToString(dr["YearDescription"]),
                             //  YearDescription = Convert.ToString(dr["YearDescription"]),
                             CompanyCode = Convert.ToString(dr["CompanyCode"]),
                         });
