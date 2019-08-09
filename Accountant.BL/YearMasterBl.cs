@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Accountant.Entities;
 using Accountant.DAL;
-
+/// <summary>
+/// ff
+/// </summary>
 namespace Accountant.BL
 {
     public class YearMasterBL
